@@ -17,3 +17,12 @@ public class Main {
     System.out.println(myObj2.x);
   }
 }
+
+public class Main {
+  int x = 5;
+
+  public static void main(String[] args) {
+    Main myObj = new Main();
+    System.out.println(myObj.x);
+  }
+}
