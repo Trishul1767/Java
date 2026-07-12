@@ -46,3 +46,10 @@ Example explained
 7) By using the new keyword we created an object with the name myCar.
 
 8) Then, we call the fullThrottle() and speed() methods on the myCar object, and run the program using the name of the object (myCar), followed by a dot (.), followed by the name of the method (fullThrottle(); and speed(200);). Notice that we add an int parameter of 200 inside the speed() method.
+
+Remember that..
+The dot (.) is used to access the object's attributes and methods.
+
+To call a method in Java, write the method name followed by a set of parentheses (), followed by a semicolon (;).
+
+A class must have a matching filename (Main and Main.java).
