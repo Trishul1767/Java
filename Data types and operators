@@ -1,1 +1,97 @@
 
+ /*
+ * PROGRAM 1  --  LOW-MEDIUM PHASE
+ * Covers:
+ *   - Programming paradigm note: this program is written in the IMPERATIVE
+ *     style (a sequence of statements that change program state step by step)
+ *   - Java keywords & identifiers (see comments marking examples)
+ *   - Java's Primitive Types, Literals, Variables, Scope & Lifetime
+ *   - Operators: Arithmetic, Relational, Logical, Bitwise, Assignment
+ *   - Type Conversion (implicit/widening) and Casting (explicit/narrowing)
+ *   - Operator Precedence
+ *
+ *
+ * Problem Statement:
+ * Write a Java program to design a Shopping Bill Calculator that
+ * demonstrates the use of primitive data types, literals, variable scope,
+ * all categories of operators, implicit type conversion, explicit casting,
+ * and operator precedence.
+ */
+public class Program1_DataTypesAndOperators {
+
+    // 'static' 'int' are KEYWORDS; 'totalBillsGenerated' is an IDENTIFIER
+    static int totalBillsGenerated = 0; 
+
+    public static void main(String[] args) {
+
+        // ---------- Primitive types & literals ----------
+        int    itemCount   = 4;            // int literal
+        double pricePerItem = 250.50;       // double literal
+        float  taxRate      = 0.05f;        // float literal ('f' suffix)
+        long   billId       = 1009823456L;  // long literal ('L' suffix)
+        char   currencySymbol = '$';        // char literal
+        boolean isMember    = true;         // boolean literal
+
+        System.out.println("---- Primitive Types & Literals ----");
+        System.out.println("Bill ID: " + billId + "  Currency: " + currencySymbol);
+
+        // ---------- Variable scope demonstration ----------
+        {
+            int discountFlag = 1;          // local to this block only
+            System.out.println("Inside block -> discountFlag = " + discountFlag);
+        }
+        // discountFlag is out of scope here - cannot be used below this point
+
+        // ---------- Arithmetic Operators ----------
+        double subTotal = itemCount * pricePerItem;
+        double remainder = itemCount % 3;          // modulus
+        System.out.println("\n---- Arithmetic Operators ----");
+        System.out.println("subTotal = " + subTotal + ", itemCount % 3 = " + remainder);
+
+        // ---------- Relational Operators ----------
+        System.out.println("\n---- Relational Operators ----");
+        System.out.println("subTotal > 500 : " + (subTotal > 500));
+        System.out.println("itemCount == 4 : " + (itemCount == 4));
+
+        // ---------- Logical Operators ----------
+        boolean eligibleForDiscount = isMember && (subTotal > 500);
+        boolean needsApproval = !isMember || (subTotal > 5000);
+        System.out.println("\n---- Logical Operators ----");
+        System.out.println("eligibleForDiscount = " + eligibleForDiscount);
+        System.out.println("needsApproval = " + needsApproval);
+
+        // ---------- Bitwise Operators ----------
+        int a = 6, b = 3;     // a=0110, b=0011
+        System.out.println("\n---- Bitwise Operators ----");
+        System.out.println("a & b = " + (a & b) + ", a | b = " + (a | b) +
+                            ", a ^ b = " + (a ^ b) + ", a << 1 = " + (a << 1));
+
+        // ---------- Assignment Operators ----------
+        double total = subTotal;
+        total += subTotal * taxRate;   // add tax
+        if (eligibleForDiscount) {
+            total -= 50;                // flat discount
+        }
+        System.out.println("\n---- Assignment Operators ----");
+        System.out.println("Final total after tax/discount = " + total);
+
+        // ---------- Type Conversion (implicit widening) ----------
+        int wholeUnits = 10;
+        double widenedUnits = wholeUnits;     // int -> double automatically
+        System.out.println("\n---- Implicit Type Conversion ----");
+        System.out.println("wholeUnits=" + wholeUnits + " widened to double=" + widenedUnits);
+
+        // ---------- Casting (explicit narrowing) ----------
+        int roundedTotal = (int) total;       // double -> int, fraction is dropped
+        System.out.println("\n---- Explicit Casting ----");
+        System.out.println("total=" + total + " cast to int = " + roundedTotal);
+
+        // ---------- Operator Precedence ----------
+        int precedenceResult = 5 + 3 * 2 - (4 / 2);  // * / before + -, () first
+        System.out.println("\n---- Operator Precedence ----");
+        System.out.println("5 + 3 * 2 - (4 / 2) = " + precedenceResult);
+
+        totalBillsGenerated++;
+        System.out.println("\nTotal bills generated so far = " + totalBillsGenerated);
+    }
+}
