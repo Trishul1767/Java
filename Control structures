@@ -1,1 +1,111 @@
 
+/*
+ * PROGRAM 2  --  LOW-MEDIUM PHASE
+ * Covers:
+ *   - The IMPERATIVE paradigm in action (step-by-step state changes via loops)
+ *   - JDK class libraries usage: java.util.ArrayList, java.util.Scanner-style input simulation
+ *   - Java Keywords & Identifiers (marked in comments)
+ *   - Program Control Structures: if, switch, for, enhanced for,
+ *     while, do-while, break, continue
+ *
+ *
+ * Problem Statement:
+ * Write a Java program to generate a Student Attendance and Grading Report
+ * that demonstrates Java's control structures (if-else, switch, for,
+ * enhanced for, while, do-while, break, continue) along with the ArrayList
+ * class from the Java Development Kit's class library.
+ */
+import java.util.ArrayList;   // JDK Class Library import
+
+public class Program2_ControlStructures {
+
+    public static void main(String[] args) {
+
+        // 'ArrayList' 'String' are class-type identifiers from the JDK class library
+        ArrayList<String> studentNames = new ArrayList<>();
+        studentNames.add("Asha");
+        studentNames.add("Ravi");
+        studentNames.add("Sneha");
+        studentNames.add("Kiran");
+
+        int[] attendanceDays = {22, 18, 25, 10};   // out of 25 working days
+        int[] marks           = {88, 55, 95, 38};
+
+        // ---------- enhanced for loop (iterate over JDK collection) ----------
+        System.out.println("---- Enrolled Students (enhanced for) ----");
+        for (String name : studentNames) {
+            System.out.println("Student: " + name);
+        }
+
+        // ---------- basic for loop + if/else + switch ----------
+        System.out.println("\n---- Attendance & Grade Report ----");
+        for (int i = 0; i < studentNames.size(); i++) {
+
+            String name = studentNames.get(i);
+            int days = attendanceDays[i];
+            int mark = marks[i];
+
+            // if / else-if / else
+            String attendanceStatus;
+            if (days >= 20) {
+                attendanceStatus = "Good";
+            } else if (days >= 15) {
+                attendanceStatus = "Average";
+            } else {
+                attendanceStatus = "Poor";
+            }
+
+            // switch statement for grade banding
+            char grade;
+            int band = mark / 10;          // integer division narrows mark to a band
+            switch (band) {
+                case 10:
+                case 9: grade = 'A'; break;
+                case 8: grade = 'B'; break;
+                case 7: grade = 'C'; break;
+                case 6: grade = 'D'; break;
+                default: grade = 'F';
+            }
+
+            System.out.println(name + " -> Attendance: " + attendanceStatus +
+                                " (" + days + "/25), Grade: " + grade);
+        }
+
+        // ---------- while loop ----------
+        System.out.println("\n---- while loop: Running total of marks until 200 ----");
+        int total = 0, idx = 0;
+        while (idx < marks.length && total < 200) {
+            total += marks[idx];
+            idx++;
+        }
+        System.out.println("Stopped at index " + idx + ", running total = " + total);
+
+        // ---------- do-while loop ----------
+        System.out.println("\n---- do-while loop: Countdown to result announcement ----");
+        int countdown = 3;
+        do {
+            System.out.println(countdown + "...");
+            countdown--;
+        } while (countdown > 0);
+        System.out.println("Results announced!");
+
+        // ---------- break statement ----------
+        System.out.println("\n---- break: Find first student with poor attendance ----");
+        for (int i = 0; i < attendanceDays.length; i++) {
+            if (attendanceDays[i] < 15) {
+                System.out.println(studentNames.get(i) + " has poor attendance (" +
+                                    attendanceDays[i] + " days) - stopping search.");
+                break;
+            }
+        }
+
+        // ---------- continue statement ----------
+        System.out.println("\n---- continue: List only students who passed (marks >= 40) ----");
+        for (int i = 0; i < marks.length; i++) {
+            if (marks[i] < 40) {
+                continue;          // skip failing students
+            }
+            System.out.println(studentNames.get(i) + " passed with " + marks[i] + " marks");
+        }
+    }
+}
