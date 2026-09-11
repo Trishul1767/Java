@@ -1,1 +1,65 @@
+/*
+ * PROGRAM 2  --  LOW-MEDIUM PHASE
+ * Covers:
+ *   String class: constructors, length(), string literals, concatenation,
+ *   toString(), character extraction, string comparison, searching strings,
+ *   modifying, data conversion, changing the case, joining, split()
+ *
+ *   StringBuffer class: constructors, length(), capacity(), ensureCapacity(),
+ *   setLength(), charAt(), setCharAt(), getChars(), append(), insert(),
+ *   reverse(), delete(), deleteCharAt(), replace()
+ *
+ * Problem Statement:
+ * Write a Java program to design a Text Processing Utility that demonstrates
+ * the String class (construction, comparison, searching, case conversion,
+ * splitting/joining) and the StringBuffer class (mutable string operations
+ * such as append, insert, reverse, delete, and replace).
+ */
+import java.util.Arrays;
 
+public class Program2_StringsAndStringBuffer {
+    public static void main(String[] args) {
+        // --- STRING CLASS ---
+        String s = "Hello", java = new String(new char[]{'J', 'a', 'v', 'a'});
+        System.out.println("Literal & CharArray: " + s + ", " + java + " (len=" + java.length() + ")");
+        System.out.println("Concat: " + (s + ", " + java + "!") + " | " + s.concat(" World"));
+        System.out.println("toString: " + Integer.toString(42));
+        System.out.println("Char Extract: charAt(1)=" + java.charAt(1) + " | " + Arrays.toString(java.toCharArray()));
+        System.out.println("Equals: " + s.equals(new String("Hello")) + " | compareTo: " + "abc".compareTo("abd") + " | equalsIgnoreCase: " + "Java".equalsIgnoreCase("JAVA"));
+
+        String sentence = "Java makes Java programs in Java";
+        System.out.println("Search: index=" + sentence.indexOf("Java") + " | last=" + sentence.lastIndexOf("Java") + " | contains=" + sentence.contains("makes"));
+        System.out.println("Modify: sub=" + sentence.substring(5) + " | replace=" + sentence.replace("Java", "C#") + " | trim=[" + "  pad  ".trim() + "]");
+        System.out.println("valueOf: " + String.valueOf(123) + ", " + String.valueOf(45.6) + ", " + String.valueOf(true));
+        System.out.println("Case: " + sentence.toUpperCase() + " | " + sentence.toLowerCase());
+
+        String[] words = sentence.split(" ");
+        System.out.println("Split & Join: " + Arrays.toString(words) + " -> " + String.join("-", words));
+
+        // --- STRINGBUFFER CLASS ---
+        StringBuffer sb = new StringBuffer("Java");
+        System.out.println("\nInitial sb: " + sb + " | len=" + sb.length() + " | cap=" + sb.capacity());
+        sb.ensureCapacity(50);
+        System.out.println("Capacity: " + sb.capacity());
+
+        sb.append(" Programming").insert(4, " Core");
+        System.out.println("Append+Insert: " + sb);
+        sb.setCharAt(0, 'j');
+        System.out.println("charAt(0)=" + sb.charAt(0) + " | setCharAt: " + sb);
+
+        char[] dest = new char[4];
+        sb.getChars(0, 4, dest, 0);
+        System.out.println("getChars: " + Arrays.toString(dest));
+        System.out.println("Reverse copy: " + new StringBuffer(sb.toString()).reverse());
+
+        StringBuffer del = new StringBuffer("Hello World");
+        del.delete(5, 11).deleteCharAt(0);
+        System.out.println("Delete: " + del);
+
+        StringBuffer rep = new StringBuffer("I like Java");
+        rep.replace(7, 11, "Python");
+        System.out.println("Replace: " + rep);
+        rep.setLength(6);
+        System.out.println("setLength: " + rep);
+    }
+}
