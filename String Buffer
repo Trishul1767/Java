@@ -7,7 +7,7 @@ class Demostringbuffer1{
         System.out.println("the capacity is: "+s1.capacity());
         System.out.println("the lenght is: "+s1.lenght());
         System.out.println("string is: "+s1.toString());
-        s1.append("to java program");
+        s1.append(" to java program");
         System.out.println("the capacity is: "+s1.capacity());
         System.out.println("the lenght is: "+s1.lenght());
         System.out.println("string is: "+s1.toString());
