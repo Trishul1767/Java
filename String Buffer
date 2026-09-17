@@ -12,6 +12,7 @@ class Demostringbuffer1{
         System.out.println("the lenght is: "+s1.lenght());
         System.out.println("string is: "+s1.toString());
         s1.append(".");
+        //outputs:
 
     }
 }
